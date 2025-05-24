@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoDesertAbuDhabi - Premium Desert Experiences</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        * {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .pricing-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .price-badge {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .search-box {
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .search-box.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .hero-section {
+            background-image: url('./images/background.jpg');
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .desert-section {
+            background: linear-gradient(rgba(13, 53, 89, 0.8), rgba(13, 53, 89, 0.8));
+        }
+
+        .image-text-section {
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        /* Page Loader Styles */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0d3559;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loader-logo {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #f59e0b;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Scroll to Top Button Styles */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #0d3559;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 0.8;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            opacity: 1;
+            background-color: #f59e0b;
+        }
+    </style>
+
+
+</head>
+
+<body class="bg-gray-50">
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <img src="./images/logo.jpg" alt="Loading..." class="loader-logo">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top" id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Header Section -->
+    <header class="bg-[#0d3559] shadow-md fixed w-full z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="/" class="text-2xl font-bold text-amber-700 flex items-center">
+                    <img src="./images/logo.jpg" alt="GoDesertAbuDhabi Logo" class="h-16 mr-2">
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="text-white hover:text-gray-200 transition">Home</a>
+                    <a href="#" class="text-white hover:text-gray-200 transition">About</a>
+
+                    <!-- Services Dropdown -->
+                    <div class="dropdown relative">
+                        <button class="text-white hover:text-gray-200 transition flex items-center"
+                            aria-expanded="false" aria-haspopup="true">
+                            Services <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-lg rounded-md mt-2 py-2 w-48 z-50">
+                            <a href="#"
+                                class="block px-4 py-2 text-gray-800 hover:bg-amber-50 hover:text-amber-600">Dune
+                                Bashing</a>
+                            <a href="#"
+                                class="block px-4 py-2 text-gray-800 hover:bg-amber-50 hover:text-amber-600">Camel
+                                Riding</a>
+                            <a href="#"
+                                class="block px-4 py-2 text-gray-800 hover:bg-amber-50 hover:text-amber-600">Desert
+                                Safari</a>
+                            <a href="#"
+                                class="block px-4 py-2 text-gray-800 hover:bg-amber-50 hover:text-amber-600">Sandboarding</a>
+                        </div>
+                    </div>
+
+                    <a href="#" class="text-white hover:text-gray-200 transition">Gallery</a>
+                    <a href="#" class="text-white hover:text-gray-200 transition">Blog</a>
+                    <a href="#" class="text-white hover:text-gray-200 transition">Contact</a>
+                </div>
+
+                <!-- Header Icons -->
+                <div class="flex items-center space-x-4 ml-6">
+                    <!-- Search Button -->
+                    <div class="relative">
+                        <button id="search-toggle" class="text-white hover:text-gray-200 transition"
+                            aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <div id="search-box"
+                            class="search-box absolute right-0 top-full mt-2 bg-white shadow-lg rounded-md p-2" style="width: 290px;">
+                            <form class="flex">
+                                <input type="text" placeholder="Search..."
+                                    class="flex-grow px-3 py-1 border border-gray-300 rounded-l focus:outline-none focus:ring-1 focus:ring-amber-500">
+                                <button type="submit"
+                                    class="bg-amber-600 text-white px-3 py-1 rounded-r hover:bg-amber-700"
+                                    aria-label="Submit search">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </form>
+                            <button id="search-close"
+                                class="absolute -top-2 -right-2 bg-gray-200 rounded-full w-6 h-6 flex items-center justify-center hover:bg-gray-300"
+                                aria-label="Close search">
+                                <i class="fas fa-times text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Open menu">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="mobile-menu fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-50 overflow-x-hidden overflow-y-auto pb-8">
+            <div class="bg-[#0d3559] flex justify-between items-center py-3 px-4 mb-6">
+                <a href="/" class="text-2xl font-bold text-amber-700 flex items-center">
+                    <img src="./images/logo.jpg" alt="GoDesertAbuDhabi Logo" class="h-16 mr-2">
+                </a>
+                <button id="mobile-menu-close" class="text-2xl text-white hover:text-gray-200" aria-label="Close menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Search -->
+            <div class="px-4 mb-6">
+                <form class="flex">
+                    <input type="text" placeholder="Search..."
+                        class="w-[80%] flex-grow px-3 py-2 border border-gray-300 rounded-l focus:outline-none focus:ring-1 focus:ring-amber-500">
+                    <button type="submit" class="bg-amber-600 text-white px-3 py-2 rounded-r hover:bg-amber-700"
+                        aria-label="Submit search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <nav class="flex flex-col space-y-2 px-4">
+                <a href="#"
+                    class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Home</a>
+                <a href="#"
+                    class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">About</a>
+
+                <!-- Services Accordion -->
+                <div class="mb-2">
+                    <button id="mobile-services-toggle"
+                        class="w-full flex justify-between items-center py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded"
+                        aria-expanded="false" aria-controls="mobile-services-menu">
+                        <span>Services</span>
+                        <i class="fas fa-chevron-down text-xs transition-transform duration-200"></i>
+                    </button>
+                    <div id="mobile-services-menu" class="hidden pl-4 mt-1">
+                        <a href="#"
+                            class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Dune
+                            Bashing</a>
+                        <a href="#"
+                            class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Camel
+                            Riding</a>
+                        <a href="#"
+                            class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Desert
+                            Safari</a>
+                        <a href="#"
+                            class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Sandboarding</a>
+                    </div>
+                </div>
+
+                <a href="#"
+                    class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Gallery</a>
+                <a href="#"
+                    class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Blog</a>
+                <a href="#"
+                    class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Contact</a>
+
+            </nav>
+        </div>
+
+        <!-- Overlay for mobile menu -->
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-20 min-h-screen">
+        <div
+            class="flex items-center justify-start mx-auto px-2 md:px-4 py-8 min-h-[80vh] md:min-h-[87vh] hero-section">
+            <!-- Hero Section -->
+            <div class="bg-white p-4 md:p-8 mb-8 animate__animated animate__fadeInLeft" data-wow-duration="1s"
+                data-wow-delay="0.3s">
+                <h1 class="text-sm md:text-base font-light text-gray-700 mb-4 animate__animated animate__fadeInLeft"
+                    data-wow-duration="1s" data-wow-delay="0.4s">Experience the Thrill of the Desert with</h1>
+                <p class="text-2xl md:text-5xl font-semibold text-amber-500 mb-6 animate__animated animate__fadeInLeft"
+                    data-wow-duration="1s" data-wow-delay="0.5s">Go Desert Abu Dhabi</p>
+                <h1 class="text-base md:text-2xl font-light text-gray-700 mb-3 animate__animated animate__fadeInLeft"
+                    data-wow-duration="1s" data-wow-delay="0.6s">7 Days, 8 Night Tour</h1>
+                <button
+                    class="bg-[#0d3559] border border-[#0d3559] hover:bg-transparent hover:text-[#0d3559] text-white font-medium py-2 px-6 transition mt-4 animate__animated animate__fadeInLeft"
+                    data-wow-duration="1s" data-wow-delay="0.7s">
+                    Book Now
+                </button>
+            </div>
+        </div>
+    </main>
+
+
+    <!-- Packages Section -->
+    <section class="py-20 px-4 md:px-8 bg-gray-100">
+        <div class="container mx-auto max-w-7xl">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-extrabold text-[#0d3559] mb-4">Choose Your Package</h2>
+                <p class="text-gray-600 text-lg max-w-2xl mx-auto">Select Your Best Package For Travel</p>
+                <p class="text-gray-500 mt-2">A small river named Duden flows by their place and supplies it with the
+                    necessary regelialia.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                <!-- Package 1: Private Dubai City Tour -->
+                <div class="border border-gray-300 p-6 rounded-xl bg-white hover:shadow-xl transition duration-300">
+                    <h3 class="text-2xl font-bold mb-2">Private Dubai City Tour</h3>
+                    <div class="text-xl font-semibold text-orange-500 mb-1">200 AED / Per Person</div>
+                    <p class="text-sm text-gray-500 mb-2">Available Daily / Evening</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                        <li>Pick & Drop From Your Location</li>
+                        <li>Dune Bashing In Land Cruiser</li>
+                        <li>Camel Ride</li>
+                        <li>Sand Boarding</li>
+                        <li>Unlimited Soft Drinks</li>
+                        <li>Arabic Costumes For Pictures</li>
+                        <li>Smoking Area Access With Facilities</li>
+                        <li>Henna Painting For Ladies & Kids</li>
+                        <li>BBQ Buffet Dinner Veg & Non Veg</li>
+                        <li>Tanura Dance Show</li>
+                        <li>Fire Shows</li>
+                        <li>Belly Dance Shows</li>
+                    </ul>
+                    <button class="mt-4 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">Book
+                        Now</button>
+                </div>
+
+                <!-- Package 2: Quad Bike -->
+                <div class="border border-gray-300 p-6 rounded-xl bg-white hover:shadow-xl transition duration-300">
+                    <h3 class="text-2xl font-bold mb-2">Desert Safari With Quad Bike</h3>
+                    <div class="text-xl font-semibold text-orange-500 mb-1">250 AED / Per Person</div>
+                    <p class="text-sm text-gray-500 mb-2">Available Daily / Evening</p>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                        <li>Pick & Drop From Your Location</li>
+                        <li>Sand Dune Bashing In Land Cruiser</li>
+                        <li>Camel Ride | Sand Boarding</li>
+                        <li>25–30 Mins Quad Bike Ride</li>
+                        <li>Unlimited Soft Drinks</li>
+                        <li>Arabic Costumes For Pictures</li>
+                        <li>Smoking Area Access With Facilities</li>
+                        <li>Henna Painting For Ladies & Kids</li>
+                        <li>BBQ Buffet Dinner Veg & Non Veg</li>
+                        <li>Tanura Dance Show</li>
+                        <li>Fire Shows</li>
+                        <li>Belly Dance Shows</li>
+                    </ul>
+                    <p class="text-xs text-green-600 font-semibold mt-2">8K+ Rating</p>
+                    <button class="mt-4 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">Book
+                        Now</button>
+                </div>
+
+                <!-- Package 3: Private Desert Safari -->
+                <div class="border border-gray-300 p-6 rounded-xl bg-white hover:shadow-xl transition duration-300">
+                    <h3 class="text-2xl font-bold mb-2">1 To 6 Pax</h3>
+                    <div class="text-xl font-semibold text-orange-500 mb-1">1000 AED</div>
+                    <p class="text-sm text-gray-500 mb-2">Available Daily / Evening</p>
+                    <h4 class="font-bold text-lg text-gray-700 mb-4">Private Desert Safari</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                        <li>Pick & Drop From Your Location</li>
+                        <li>Dune Bashing In Land Cruiser</li>
+                        <li>Camel Ride</li>
+                        <li>Sand Boarding</li>
+                        <li>Unlimited Soft Drinks</li>
+                        <li>Arabic Costumes For Pictures</li>
+                        <li>Smoking Area Access With Facilities</li>
+                        <li>Henna Painting For Ladies & Kids</li>
+                        <li>BBQ Buffet Dinner Veg & Non Veg</li>
+                        <li>Tanura Dance Show</li>
+                        <li>Fire Shows</li>
+                        <li>Belly Dance Shows</li>
+                    </ul>
+                    <p class="text-xs text-green-600 font-semibold mt-2">8K+ Rating</p>
+                    <button class="mt-4 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">Book
+                        Now</button>
+                </div>
+
+                <!-- Package 4: VIP Desert Safari Abu Dhabi -->
+                <div class="border border-gray-300 p-6 rounded-xl bg-white hover:shadow-xl transition duration-300">
+                    <div class="text-xl font-semibold text-orange-500 mb-1">200 AED</div>
+                    <p class="text-sm text-gray-500 mb-2">Available Daily / Evening</p>
+                    <h4 class="font-bold text-lg text-gray-700 mb-4">Vip Desert Safari Abu Dhabi</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                        <li>Pick & Drop From Your Location</li>
+                        <li>Dune Bashing In Land Cruiser</li>
+                        <li>Camel Ride | Sand Boarding</li>
+                        <li>Unlimited Soft Drinks</li>
+                        <li>Arabic Costumes For Pictures</li>
+                        <li>Smoking Area Access With Facilities</li>
+                        <li>Henna Painting For Ladies & Kids</li>
+                        <li>BBQ Buffet Dinner Veg & Non Veg</li>
+                        <li>Tanura Show | Fire Show | Belly Dance</li>
+                        <li>Vip Separate Sitting Area Inside The Camp</li>
+                        <li>Dinner & Soft Drinks Served On Your Table</li>
+                    </ul>
+                    <p class="text-xs text-green-600 font-semibold mt-2">8K+ Rating</p>
+                    <button class="mt-4 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">Book
+                        Now</button>
+                </div>
+
+                <!-- Package 5: VIP Desert Safari + Quad Bike -->
+                <div class="border border-gray-300 p-6 rounded-xl bg-white hover:shadow-xl transition duration-300">
+                    <div class="text-xl font-semibold text-orange-500 mb-1">350 AED</div>
+                    <p class="text-sm text-gray-500 mb-2">Available Daily / Evening</p>
+                    <h4 class="font-bold text-lg text-gray-700 mb-4">Vip Desert Safari + Quad Bike</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                        <li>Pick & Drop From Your Location</li>
+                        <li>Dune Bashing In Land Cruiser</li>
+                        <li>Camel Ride | Sand Boarding</li>
+                        <li>Unlimited Soft Drinks</li>
+                        <li>Arabic Costumes For Pictures</li>
+                        <li>Smoking Area Access With Facilities</li>
+                        <li>Henna Painting For Ladies & Kids</li>
+                        <li>BBQ Buffet Dinner Veg & Non Veg</li>
+                        <li>Tanura Show | Fire Show | Belly Dance</li>
+                        <li>Vip Separate Sitting Area Inside The Camp</li>
+                        <li>Dinner & Soft Drinks Served On Your Table</li>
+                    </ul>
+                    <p class="text-xs text-green-600 font-semibold mt-2">8K+ Rating</p>
+                    <button class="mt-4 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">Book
+                        Now</button>
+                </div>
+
+                <!-- Package 6: Overnight Desert Safari -->
+                <div class="border border-gray-300 p-6 rounded-xl bg-white hover:shadow-xl transition duration-300">
+                    <div class="text-xl font-semibold text-orange-500 mb-1">400 AED</div>
+                    <p class="text-sm text-gray-500 mb-2">Available Daily / Evening</p>
+                    <h4 class="font-bold text-lg text-gray-700 mb-4">Overnight Desert Safari</h4>
+                    <ul class="list-disc list-inside space-y-1 text-sm text-gray-700">
+                        <li>Pick & Drop From Your Location</li>
+                        <li>Dune Bashing In Land Cruiser</li>
+                        <li>Camel Ride</li>
+                        <li>Sand Boarding</li>
+                        <li>Arabic Costumes For Pictures</li>
+                        <li>Smoking Area Access With Facilities</li>
+                        <li>Henna Painting For Ladies & Kids</li>
+                        <li>BBQ Buffet Dinner Veg & Non Veg</li>
+                        <li>Tanura Show | Fire Show | Belly Dance</li>
+                        <li>Overnight Stay In Desert</li>
+                        <li>Sleeping Bags | Morning Breakfast</li>
+                    </ul>
+                    <p class="text-xs text-green-600 font-semibold mt-2">8K+ Rating</p>
+                    <button class="mt-4 bg-orange-500 text-white px-4 py-2 rounded hover:bg-orange-600 transition">Book
+                        Now</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="py-16 px-4 md:px-8 bg-white">
+        <div class="container mx-auto">
+            <div class="flex flex-col lg:flex-row-reverse items-center gap-12 wow animate__animated animate__fadeInUp">
+                <!-- Image Column -->
+                <div class="lg:w-1/2 wow animate__animated animate__fadeInRight">
+                    <div class="image-text-section rounded-xl overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
+                            alt="Desert Adventure Activities" class="w-full h-auto rounded-xl shadow-xl">
+                    </div>
+                </div>
+
+                <!-- Text Column -->
+                <div class="lg:w-1/2 wow animate__animated animate__fadeInLeft">
+                    <h2 class="text-3xl md:text-4xl font-bold text-[#0d3559] mb-6">Thrilling Desert Adventures</h2>
+                    <p class="text-gray-600 mb-6">Get your adrenaline pumping with our exciting range of desert
+                        activities designed for adventure seekers of all levels. From heart-racing dune bashing to
+                        serene camel rides, we offer experiences that will make your Abu Dhabi visit unforgettable.</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <!-- Activity 1 -->
+                        <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                            <div class="text-amber-600 mb-2">
+                                <i class="fas fa-car text-2xl"></i>
+                            </div>
+                            <h3 class="font-semibold text-[#0d3559] mb-1">Dune Bashing</h3>
+                            <p class="text-gray-600 text-sm">Experience the rollercoaster ride over golden dunes with
+                                our expert drivers.</p>
+                        </div>
+
+                        <!-- Activity 2 -->
+                        <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                            <div class="text-amber-600 mb-2">
+                                <i class="fas fa-camera text-2xl"></i>
+                            </div>
+                            <h3 class="font-semibold text-[#0d3559] mb-1">Photography Tours</h3>
+                            <p class="text-gray-600 text-sm">Capture stunning desert landscapes with our
+                                photography-focused tours.</p>
+                        </div>
+
+                        <!-- Activity 3 -->
+                        <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                            <div class="text-amber-600 mb-2">
+                                <i class="fas fa-hiking text-2xl"></i>
+                            </div>
+                            <h3 class="font-semibold text-[#0d3559] mb-1">Sandboarding</h3>
+                            <p class="text-gray-600 text-sm">Surf down the dunes on our specially designed sandboards.
+                            </p>
+                        </div>
+
+                        <!-- Activity 4 -->
+                        <div class="border border-gray-200 rounded-lg p-4 hover:shadow-md transition">
+                            <div class="text-amber-600 mb-2">
+                                <i class="fas fa-utensils text-2xl"></i>
+                            </div>
+                            <h3 class="font-semibold text-[#0d3559] mb-1">Desert Dining</h3>
+                            <p class="text-gray-600 text-sm">Savor authentic Arabic cuisine under the stars at our
+                                desert camp.</p>
+                        </div>
+                    </div>
+
+                    <button
+                        class="bg-transparent border-2 border-[#0d3559] text-[#0d3559] font-medium py-3 px-8 rounded-lg hover:bg-[#0d3559] hover:text-white transition duration-300">
+                        View All Activities
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+<!-- Professional Team Grid Section -->
+<div class="container max-w-6xl mx-auto px-4 py-16">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-[#0d3559] mb-4">Our Expert Guides</h2>
+        <p class="text-lg text-gray-600">Meet the passionate professionals who make your desert adventures unforgettable</p>
+    </div>
+    
+    <!-- Grid Container -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <!-- Team Member 1 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div class="relative h-20">
+                <div class="absolute -bottom-12 left-1/2 transform -translate-x-1/2">
+                    <div class="h-24 w-24 rounded-full border-4 border-white overflow-hidden shadow-md">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                             alt="James Skarr" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+            <div class="pt-16 pb-8 px-6 text-center">
+                <h3 class="text-xl font-bold text-gray-800">James Skarr</h3>
+                <p class="text-amber-600 font-medium mb-4">Director & CEO</p>
+                <p class="text-gray-600 mb-6">With 15+ years of desert guiding experience, James ensures every adventure is safe and memorable.</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Team Member 2 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div class="relative h-20">
+                <div class="absolute -bottom-12 left-1/2 transform -translate-x-1/2">
+                    <div class="h-24 w-24 rounded-full border-4 border-white overflow-hidden shadow-md">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                             alt="Sarah Al-Mansoori" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+            <div class="pt-16 pb-8 px-6 text-center">
+                <h3 class="text-xl font-bold text-gray-800">Sarah Al-Mansoori</h3>
+                <p class="text-amber-600 font-medium mb-4">Head Safari Guide</p>
+                <p class="text-gray-600 mb-6">Born and raised in the desert, Sarah knows every dune and secret oasis in Abu Dhabi.</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Team Member 3 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div class="relative h-20">
+                <div class="absolute -bottom-12 left-1/2 transform -translate-x-1/2">
+                    <div class="h-24 w-24 rounded-full border-4 border-white overflow-hidden shadow-md">
+                        <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                             alt="Mohammed Khan" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+            <div class="pt-16 pb-8 px-6 text-center">
+                <h3 class="text-xl font-bold text-gray-800">Mohammed Khan</h3>
+                <p class="text-amber-600 font-medium mb-4">Dune Bashing Expert</p>
+                <p class="text-gray-600 mb-6">Our adrenaline specialist with 10+ years of off-road driving experience across Arabian deserts.</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Team Member 4 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div class="relative h-20">
+                <div class="absolute -bottom-12 left-1/2 transform -translate-x-1/2">
+                    <div class="h-24 w-24 rounded-full border-4 border-white overflow-hidden shadow-md">
+                        <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                             alt="Fatima Al-Hashimi" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+            <div class="pt-16 pb-8 px-6 text-center">
+                <h3 class="text-xl font-bold text-gray-800">Fatima Al-Hashimi</h3>
+                <p class="text-amber-600 font-medium mb-4">Cultural Experience Guide</p>
+                <p class="text-gray-600 mb-6">Expert in Bedouin traditions who brings authentic cultural experiences to every tour.</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Team Member 5 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div class="relative h-20">
+                <div class="absolute -bottom-12 left-1/2 transform -translate-x-1/2">
+                    <div class="h-24 w-24 rounded-full border-4 border-white overflow-hidden shadow-md">
+                        <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                             alt="Ahmed Rahman" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+            <div class="pt-16 pb-8 px-6 text-center">
+                <h3 class="text-xl font-bold text-gray-800">Ahmed Rahman</h3>
+                <p class="text-amber-600 font-medium mb-4">Camel Trek Specialist</p>
+                <p class="text-gray-600 mb-6">With deep knowledge of desert wildlife and Bedouin traditions.</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Team Member 6 -->
+        <div class="bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+            <div class="relative h-20">
+                <div class="absolute -bottom-12 left-1/2 transform -translate-x-1/2">
+                    <div class="h-24 w-24 rounded-full border-4 border-white overflow-hidden shadow-md">
+                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" 
+                             alt="Layla Hassan" class="w-full h-full object-cover">
+                    </div>
+                </div>
+            </div>
+            <div class="pt-16 pb-8 px-6 text-center">
+                <h3 class="text-xl font-bold text-gray-800">Layla Hassan</h3>
+                <p class="text-amber-600 font-medium mb-4">Photography Guide</p>
+                <p class="text-gray-600 mb-6">Professional photographer specializing in capturing stunning desert landscapes.</p>
+                <div class="flex justify-center space-x-4">
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fab fa-linkedin text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fab fa-instagram text-xl"></i>
+                    </a>
+                    <a href="#" class="text-gray-400 hover:text-amber-600 transition-colors">
+                        <i class="fas fa-envelope text-xl"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Newsletter Section -->
+<section class="py-16 bg-gradient-to-r from-[#0d3559] to-amber-600">
+    <div class="container mx-auto px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">Stay Updated</h2>
+            <p class="text-lg text-amber-100 mb-8">Subscribe to our newsletter for the latest desert adventures, special offers, and travel tips.</p>
+            
+            <div class="flex flex-col md:flex-row gap-4 justify-center">
+                <input 
+                    type="email" 
+                    placeholder="Your email address" 
+                    class="flex-grow px-6 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
+                    required
+                >
+                <button 
+                    class="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-8 py-3 rounded-lg transition duration-300"
+                >
+                    Subscribe
+                </button>
+            </div>
+            
+            <div class="mt-4 flex justify-center gap-4">
+                <!-- Social Media Links -->
+                <a href="#" class="text-white hover:text-amber-300 transition" aria-label="Facebook">
+                    <i class="fab fa-facebook-f text-xl"></i>
+                </a>
+                <a href="#" class="text-white hover:text-amber-300 transition" aria-label="Instagram">
+                    <i class="fab fa-instagram text-xl"></i>
+                </a>
+                <a href="#" class="text-white hover:text-amber-300 transition" aria-label="Twitter">
+                    <i class="fab fa-twitter text-xl"></i>
+                </a>
+                <a href="#" class="text-white hover:text-amber-300 transition" aria-label="WhatsApp">
+                    <i class="fab fa-whatsapp text-xl"></i>
+                </a>
+            </div>
+            
+            <p class="mt-6 text-sm text-amber-100">
+                We respect your privacy. Unsubscribe at any time.
+            </p>
+        </div>
+    </div>
+</section>
+
+
+<!-- Explore Dubai Section -->
+<section class="py-16 bg-gradient-to-b from-blue-50 to-amber-50">
+    <div class="container mx-auto px-4">
+      <!-- Hero Section -->
+      <div class="text-center mb-16 max-w-4xl mx-auto">
+        <h2 class="text-3xl md:text-5xl font-bold text-[#0d3559] mb-6">
+          Explore Dubai: Your Ultimate Adventure Awaits
+        </h2>
+        <p class="text-lg md:text-xl text-gray-700 mb-8">
+          Discover the breathtaking beauty and vibrant culture of Dubai with our exciting range of services, tailored to provide you with unforgettable experiences. Whether you're an adventure seeker or a culture enthusiast, we have something for everyone.
+        </p>
+        <div class="flex flex-wrap justify-center gap-4">
+          <span class="px-4 py-2 bg-amber-500 text-white rounded-full font-medium">Desert Safari</span>
+          <span class="px-4 py-2 bg-amber-500 text-white rounded-full font-medium">Dune Buggy</span>
+          <span class="px-4 py-2 bg-amber-500 text-white rounded-full font-medium">Quad Bike</span>
+          <span class="px-4 py-2 bg-amber-500 text-white rounded-full font-medium">City Tour</span>
+          <span class="px-4 py-2 bg-amber-500 text-white rounded-full font-medium">UAE Events</span>
+        </div>
+      </div>
+  
+      <!-- FAQ Section -->
+      <div class="max-w-4xl mx-auto">
+        <h3 class="text-2xl md:text-3xl font-bold text-[#0d3559] mb-8 text-center">
+          Frequently Asked Questions
+        </h3>
+        
+        <div class="space-y-4">
+          <!-- FAQ Item 1 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <button class="faq-toggle w-full flex justify-between items-center p-6 text-left">
+              <h4 class="text-lg md:text-xl font-semibold text-[#0d3559]">
+                How To Book A Dune Buggy Ride?
+              </h4>
+              <svg class="w-6 h-6 text-amber-600 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="faq-content px-6 pb-6 hidden">
+              <p class="text-gray-700">
+                Make a call at our mentioned WhatsApp numbers. Also, for customers ease our team is taking bookings from website. You can also buy a tour from website directly. Desert Safari Dubai Bookings are open throughout the year arrange tour whenever it is convenient for you. So, plan your tour with us.
+              </p>
+            </div>
+          </div>
+  
+          <!-- FAQ Item 2 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <button class="faq-toggle w-full flex justify-between items-center p-6 text-left">
+              <h4 class="text-lg md:text-xl font-semibold text-[#0d3559]">
+                Where can I find the best dune buggy rides near me in Dubai?
+              </h4>
+              <svg class="w-6 h-6 text-amber-600 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="faq-content px-6 pb-6 hidden">
+              <p class="text-gray-700">
+                You can find the best desert safari rides near you in Dubai at various reputable adventure tour companies that offer thrilling off-road experiences in the Arabian desert.
+              </p>
+            </div>
+          </div>
+  
+          <!-- FAQ Item 3 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <button class="faq-toggle w-full flex justify-between items-center p-6 text-left">
+              <h4 class="text-lg md:text-xl font-semibold text-[#0d3559]">
+                What is the age limit for riding Desert Dune Buggies in Dubai?
+              </h4>
+              <svg class="w-6 h-6 text-amber-600 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="faq-content px-6 pb-6 hidden">
+              <p class="text-gray-700">
+                Desert Safari Dubai age limit must be at least 16 years old to drive Desert Dune Buggies in Dubai. Dune buggy rental passengers can be younger, but must be accompanied by an adult. Our Dune buggy tours in UAE ensures all safety protocols are followed.
+              </p>
+            </div>
+          </div>
+  
+          <!-- FAQ Item 4 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <button class="faq-toggle w-full flex justify-between items-center p-6 text-left">
+              <h4 class="text-lg md:text-xl font-semibold text-[#0d3559]">
+                How much does it cost to dune buggy in Dubai?
+              </h4>
+              <svg class="w-6 h-6 text-amber-600 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="faq-content px-6 pb-6 hidden">
+              <p class="text-gray-700">
+                The Desert Safari Dubai price varies depending on the package and duration, with rates starting around AED 600. For exact pricing, check our current offers on Buggy Safaris and Dune Buggy Safari Tour Dubai.
+              </p>
+            </div>
+          </div>
+  
+          <!-- FAQ Item 5 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <button class="faq-toggle w-full flex justify-between items-center p-6 text-left">
+              <h4 class="text-lg md:text-xl font-semibold text-[#0d3559]">
+                Do you need a license to drive a dune buggy in Dubai?
+              </h4>
+              <svg class="w-6 h-6 text-amber-600 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="faq-content px-6 pb-6 hidden">
+              <p class="text-gray-700">
+                No, you don't need a license to drive a dune buggy in Dubai. Our Dune Buggy Tours Operator provides all necessary instructions to ensure a safe and enjoyable experience.
+              </p>
+            </div>
+          </div>
+  
+          <!-- FAQ Item 6 -->
+          <div class="bg-white rounded-xl shadow-md overflow-hidden">
+            <button class="faq-toggle w-full flex justify-between items-center p-6 text-left">
+              <h4 class="text-lg md:text-xl font-semibold text-[#0d3559]">
+                Is dune bashing in Dubai worth it?
+              </h4>
+              <svg class="w-6 h-6 text-amber-600 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+              </svg>
+            </button>
+            <div class="faq-content px-6 pb-6 hidden">
+              <p class="text-gray-700">
+                Absolutely, dune bashing in Dubai is a thrilling adventure that combines the excitement of off-roading with the stunning desert landscape. Our Dune Bashing Safari offers a unique experience that's worth every moment.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+
+
+
+    <section id="contact" class="contact py-12 bg-white">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="text-center mb-8">
+                <h2 class="text-3xl font-bold text-gray-900">Contact</h2>
+                <p class="text-lg text-gray-600">Contact Us</p>
+            </div>
+
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Contact Info -->
+                <div class="w-full lg:w-1/3">
+                    <div class="space-y-10">
+                        <div class="flex items-start">
+                            <div
+                                class="flex items-center justify-center w-11 h-11 bg-yellow-400 text-gray-900 rounded-md text-xl">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z" />
+                                </svg>
+
+                            </div>
+                            <div class="pl-5">
+                                <h4 class="text-lg font-semibold text-gray-900">WhatsApp:</h4>
+                                <p class="text-sm text-gray-600">
+                                    <a href="https://wa.me/971563533480?text=">+971 563533480</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div
+                                class="flex items-center justify-center w-11 h-11 bg-yellow-400 text-gray-900 rounded-md text-xl">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
+                                </svg>
+
+                            </div>
+                            <div class="pl-5">
+                                <h4 class="text-lg font-semibold text-gray-900">Email:</h4>
+                                <p class="text-sm text-gray-600">
+                                    <a href="mailto:deserttraveltoursae@gmail.com">info@deserttravelstours.com</a>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div
+                                class="flex items-center justify-center w-11 h-11 bg-yellow-400 text-gray-900 rounded-md text-xl">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="size-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                                </svg>
+
+                            </div>
+                            <div class="pl-5">
+                                <h4 class="text-lg font-semibold text-gray-900">Location:</h4>
+                                <p class="text-sm text-gray-600">
+                                    <a href="tel:+971563533480">Johar Town Lahore, Pakistan</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="w-full lg:w-2/3">
+                    <form action="forms/contact.php" method="post" role="form" class="space-y-4 bg-white">
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="w-full">
+                                <input type="text" name="name" id="name" placeholder="Your Name" required
+                                    class="w-full h-11 px-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+                            </div>
+                            <div class="w-full">
+                                <input type="email" name="email" id="email" placeholder="Your Email" required
+                                    class="w-full h-11 px-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+                            </div>
+                        </div>
+
+                        <input type="text" name="subject" id="subject" placeholder="Subject" required
+                            class="w-full h-11 px-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+
+                        <textarea name="message" rows="5" placeholder="Message" required
+                            class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"></textarea>
+
+                        <!-- Feedback Messages -->
+                        <div class="space-y-3 text-sm font-semibold">
+                            <div class="loading hidden bg-white text-center py-3 text-gray-700">Loading...</div>
+                            <div class="error-message hidden bg-red-600 text-white text-left py-3 px-4">Error occurred.
+                            </div>
+                            <div class="sent-message hidden bg-green-500 text-white text-center py-3">Your message has
+                                been sent. Thank you!</div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit"
+                                class="bg-yellow-400 hover:bg-yellow-300 text-gray-900 px-6 py-2 rounded-md transition duration-300">
+                                Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <footer class="bg-[#0d3559] text-white text-sm pt-0 pb-8" id="footer">
+        <div class="container mx-auto px-4">
+            <div class="text-center pt-8">
+                <img class="mb-4 inline-block" src="./images/logo.jpg" alt="Logo" style="height: 100px;" />
+                <p>
+                    © 2025 <strong><span class="text-yellow-400">Desert Travels Tours</span></strong>. All Rights
+                    Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+
+    <!-- WOW.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+        // Initialize WOW.js
+        new WOW({
+            boxClass: 'animate__animated', // This matches Animate.css's class
+            animateClass: 'animate__animated',
+            offset: 0,
+            mobile: true,
+            live: true
+        }).init();
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+            mobileMenuOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            mobileMenuOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        mobileMenuOverlay.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            mobileMenuOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        // Mobile Services Toggle
+        const mobileServicesToggle = document.getElementById('mobile-services-toggle');
+        const mobileServicesMenu = document.getElementById('mobile-services-menu');
+
+        mobileServicesToggle.addEventListener('click', () => {
+            const isExpanded = mobileServicesToggle.getAttribute('aria-expanded') === 'true';
+            mobileServicesMenu.classList.toggle('hidden');
+            mobileServicesToggle.setAttribute('aria-expanded', !isExpanded);
+
+            const icon = mobileServicesToggle.querySelector('i');
+            icon.classList.toggle('rotate-180');
+        });
+
+ // Search Toggle - Fixed version
+ const searchToggle = document.getElementById('search-toggle');
+    const searchBox = document.getElementById('search-box');
+    const searchClose = document.getElementById('search-close');
+
+    if (searchToggle && searchBox && searchClose) {
+        searchToggle.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event from bubbling up
+            searchBox.classList.toggle('open');
+        });
+
+        searchClose.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent event from bubbling up
+            searchBox.classList.remove('open');
+        });
+
+        // Close search box when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!searchBox.contains(e.target) && e.target !== searchToggle) {
+                searchBox.classList.remove('open');
+            }
+        });
+
+        // Prevent the search box from closing when clicking inside it
+        searchBox.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.add('hidden');
+                });
+            }
+        });
+
+        // Scroll to Top Button
+        const scrollToTopButton = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopButton.classList.add('visible');
+            } else {
+                scrollToTopButton.classList.remove('visible');
+            }
+        });
+
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Hide loader when everything is loaded
+        window.addEventListener('load', function () {
+            // Add a small delay for the loading animation to complete
+            setTimeout(function () {
+                const loader = document.querySelector('.page-loader');
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }, 500); // 500ms delay to allow the loading animation to complete
+        });
+
+        // Fallback in case the load event doesn't fire
+        document.addEventListener('DOMContentLoaded', function () {
+
+
+            setTimeout(function () {
+                const loader = document.querySelector('.page-loader');
+                if (loader.style.opacity !== '0') {
+                    loader.style.opacity = '0';
+                    loader.style.visibility = 'hidden';
+                }
+            }, 2000); // Maximum 2 seconds fallback
+
+            document.querySelectorAll('.faq-toggle').forEach(button => {
+      button.addEventListener('click', () => {
+        const content = button.nextElementSibling;
+        const icon = button.querySelector('svg');
+        
+        // Toggle content visibility
+        content.classList.toggle('hidden');
+        
+        // Rotate icon
+        icon.classList.toggle('rotate-180');
+        
+        // Close other open FAQs
+        document.querySelectorAll('.faq-content').forEach(item => {
+          if (item !== content && !item.classList.contains('hidden')) {
+            item.classList.add('hidden');
+            item.previousElementSibling.querySelector('svg').classList.remove('rotate-180');
+          }
+        });
+      });
+    });
+        });
+    </script>
+</body>
+
+</html>
