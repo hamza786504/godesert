@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoDesertAbuDhabi - Premium Desert Experiences</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
+    <style>
+        body {
+            overflow-x: hidden;
+        }
+
+        * {
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+
+        .mobile-menu {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .search-box {
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .search-box.open {
+            opacity: 1;
+            visibility: visible;
+        }
+
+
+        /* Page Loader Styles */
+        .page-loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0d3559;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .loader-logo {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 20px;
+            animation: pulse 1.5s infinite ease-in-out;
+        }
+
+        .loader-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #f59e0b;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Scroll to Top Button Styles */
+        .scroll-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #0d3559;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 99;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-to-top.visible {
+            opacity: 0.8;
+            visibility: visible;
+        }
+
+        .scroll-to-top:hover {
+            opacity: 1;
+            background-color: #f59e0b;
+        }
+
+
+        /* Initial header style - transparent */
+        header {
+            transition: all 0.3s ease;
+        }
+
+        /* Scrolled header style */
+        header.scrolled {
+            background-color: #0d3559;
+            /* Blue background */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        /* Dropdown menu styles */
+        .dropdown:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
+
+
+</head>
+
+<body class="flex flex-col min-h-screen justify-stretch">
+    <!-- Page Loader -->
+    <div class="page-loader">
+        <img src="./images/logo.jpg" alt="Loading..." class="loader-logo">
+        <div class="loader-spinner"></div>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-to-top " id="scrollToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Header Section -->
+    <header class="bg-[#0d3559] w-full z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo -->
+            <div class="flex items-center">
+                <a href="/" class="text-2xl font-bold text-amber-700 flex items-center">
+                    <img src="./images/logo.jpg" alt="GoDesertAbuDhabi Logo" class="h-16 mr-2">
+                </a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="hidden md:flex items-center space-x-8">
+                <div class="flex items-center space-x-6">
+                    <a href="#" class="text-white hover:text-gray-200 transition">Home</a>
+                    <a href="#" class="text-white hover:text-gray-200 transition">About</a>
+
+                    <!-- Services Dropdown -->
+                    <div class="dropdown relative">
+                        <button class="text-white hover:text-gray-200 transition flex items-center"
+                            aria-expanded="false" aria-haspopup="true">
+                            Services <i class="fas fa-chevron-down ml-1 text-xs"></i>
+                        </button>
+                        <div class="dropdown-menu absolute hidden bg-white shadow-lg rounded-md mt-2 py-2 w-48 z-50">
+                            <a href="#"
+                                class="block px-4 py-2 text-gray-800 hover:bg-amber-50 hover:text-amber-600">Dune
+                                Bashing</a>
+                            <a href="#"
+                                class="block px-4 py-2 text-gray-800 hover:bg-amber-50 hover:text-amber-600">Camel
+                                Riding</a>
+                            <a href="#"
+                                class="block px-4 py-2 text-gray-800 hover:bg-amber-50 hover:text-amber-600">Desert
+                                Safari</a>
+                            <a href="#"
+                                class="block px-4 py-2 text-gray-800 hover:bg-amber-50 hover:text-amber-600">Sandboarding</a>
+                        </div>
+                    </div>
+
+                    <a href="#" class="text-white hover:text-gray-200 transition">Gallery</a>
+                    <a href="#" class="text-white hover:text-gray-200 transition">Blog</a>
+                    <a href="#" class="text-white hover:text-gray-200 transition">Contact</a>
+                </div>
+
+                <!-- Header Icons -->
+                <div class="flex items-center space-x-4 ml-6">
+                    <!-- Search Button -->
+                    <div class="relative">
+                        <button id="search-toggle" class="text-white hover:text-gray-200 transition"
+                            aria-label="Search">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <div id="search-box"
+                            class="search-box absolute right-0 top-full mt-2 bg-white shadow-lg rounded-md p-2"
+                            style="width: 290px;">
+                            <form id="searchForm" class="flex">
+                                <input type="text" id="searchInput" placeholder="Search..."
+                                    class="flex-grow px-3 py-1 border border-gray-300 rounded-l focus:outline-none focus:ring-1 focus:ring-amber-500">
+                                <button type="submit"
+                                    class="bg-amber-600 text-white px-3 py-1 rounded-r hover:bg-amber-700"
+                                    aria-label="Submit search">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </form>
+
+                            <button id="search-close"
+                                class="absolute -top-2 -right-2 bg-gray-200 rounded-full w-6 h-6 flex items-center justify-center hover:bg-gray-300"
+                                aria-label="Close search">
+                                <i class="fas fa-times text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-toggle" class="md:hidden text-white focus:outline-none" aria-label="Open menu">
+                <i class="fas fa-bars text-2xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="mobile-menu fixed inset-y-0 left-0 w-64 bg-white shadow-lg z-50 overflow-x-hidden overflow-y-auto pb-8 transform -translate-x-full transition-transform duration-300">
+            <div class="bg-[#0d3559] flex justify-between items-center py-3 px-4 mb-6">
+                <a href="/" class="text-2xl font-bold text-amber-700 flex items-center">
+                    <img src="./images/logo.jpg" alt="GoDesertAbuDhabi Logo" class="h-16 mr-2">
+                </a>
+                <button id="mobile-menu-close" class="text-2xl text-white hover:text-gray-200" aria-label="Close menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+
+            <!-- Mobile Search -->
+            <div class="px-4 mb-6">
+                <form class="flex">
+                    <input type="text" placeholder="Search..."
+                        class="w-[80%] flex-grow px-3 py-2 border border-gray-300 rounded-l focus:outline-none focus:ring-1 focus:ring-amber-500">
+                    <button type="submit" class="bg-amber-600 text-white px-3 py-2 rounded-r hover:bg-amber-700"
+                        aria-label="Submit search">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <nav class="flex flex-col space-y-2 px-4">
+                <a href="#"
+                    class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Home</a>
+                <a href="#"
+                    class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">About</a>
+
+                <!-- Services Accordion -->
+                <div class="mb-2">
+                    <button id="mobile-services-toggle"
+                        class="w-full flex justify-between items-center py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded"
+                        aria-expanded="false" aria-controls="mobile-services-menu">
+                        <span>Services</span>
+                        <i class="fas fa-chevron-down text-xs transition-transform duration-200"></i>
+                    </button>
+                    <div id="mobile-services-menu" class="hidden pl-4 mt-1">
+                        <a href="#"
+                            class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Dune
+                            Bashing</a>
+                        <a href="#"
+                            class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Camel
+                            Riding</a>
+                        <a href="#"
+                            class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Desert
+                            Safari</a>
+                        <a href="#"
+                            class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Sandboarding</a>
+                    </div>
+                </div>
+
+                <a href="#"
+                    class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Gallery</a>
+                <a href="#"
+                    class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Blog</a>
+                <a href="#"
+                    class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Contact</a>
+            </nav>
+        </div>
+
+        <!-- Overlay for mobile menu -->
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden"></div>
+    </header>
+
+
+
+    <!-- Query Display -->
+  <section class="flex-1 text-start px-10 py-6">
+    <h2 id="searchTitle" class="text-2xl font-semibold mb-4 text-gray-700"></h2>
+
+    <!-- Results Grid -->
+    <div id="results" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+      <!-- Results will be inserted here -->
+    </div>
+  </section>
+
+
+
+    <footer class="bg-[#0d3559] text-white text-sm pt-0 pb-8" id="footer">
+        <div class="container mx-auto px-4">
+            <div class="text-center pt-8">
+                <img class="mb-4 inline-block" src="./images/logo.jpg" alt="Logo" style="height: 100px;" />
+                <p>
+                    © 2025 <strong><span class="text-yellow-400">Desert Travels Tours</span></strong>. All Rights
+                    Reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+
+
+
+
+
+
+
+    <!-- WOW.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+
+
+const urlParams = new URLSearchParams(window.location.search);
+    const query = urlParams.get("query");
+
+    const searchTitle = document.getElementById("searchTitle");
+    const resultsContainer = document.getElementById("results");
+
+    if (query) {
+      searchTitle.textContent = `Showing results for "${query}"`;
+
+      // Simulated results (replace with real API data)
+      const mockResults = [
+        "How to learn JavaScript fast",
+        "Responsive design with Tailwind CSS",
+        "Top 10 web development tools",
+        "Understanding React hooks",
+        "Creating animations with CSS",
+        "Building a portfolio website",
+      ];
+
+      // Filter mock results (case-insensitive match)
+      const filteredResults = mockResults.filter(item =>
+        item.toLowerCase().includes(query.toLowerCase())
+      );
+
+      if (filteredResults.length > 0) {
+        filteredResults.forEach(title => {
+          const card = document.createElement("div");
+          card.className = "bg-white rounded-lg shadow hover:shadow-md p-4 transition";
+          card.innerHTML = `
+            <h3 class="font-semibold text-lg mb-2 text-amber-600">${title}</h3>
+            <p class="text-gray-600 text-sm">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel lorem ac justo volutpat.</p>
+          `;
+          resultsContainer.appendChild(card);
+        });
+      } else {
+        resultsContainer.innerHTML = `<p class="text-gray-500 col-span-full">No results found for "${query}".</p>`;
+      }
+    } else {
+      searchTitle.textContent = "No query provided.";
+    }
+
+
+        // Initialize WOW.js
+        new WOW({
+            boxClass: 'animate__animated', // This matches Animate.css's class
+            animateClass: 'animate__animated',
+            offset: 0,
+            mobile: true,
+            live: true
+        }).init();
+
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.classList.add('open');
+            mobileMenuOverlay.classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            mobileMenuOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        mobileMenuOverlay.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            mobileMenuOverlay.classList.add('hidden');
+            document.body.style.overflow = '';
+        });
+
+        // Mobile Services Toggle
+        const mobileServicesToggle = document.getElementById('mobile-services-toggle');
+        const mobileServicesMenu = document.getElementById('mobile-services-menu');
+
+        mobileServicesToggle.addEventListener('click', () => {
+            const isExpanded = mobileServicesToggle.getAttribute('aria-expanded') === 'true';
+            mobileServicesMenu.classList.toggle('hidden');
+            mobileServicesToggle.setAttribute('aria-expanded', !isExpanded);
+
+            const icon = mobileServicesToggle.querySelector('i');
+            icon.classList.toggle('rotate-180');
+        });
+
+        // Search Toggle - Fixed version
+        const searchToggle = document.getElementById('search-toggle');
+        const searchBox = document.getElementById('search-box');
+        const searchClose = document.getElementById('search-close');
+
+        if (searchToggle && searchBox && searchClose) {
+            searchToggle.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event from bubbling up
+                searchBox.classList.toggle('open');
+            });
+
+            searchClose.addEventListener('click', (e) => {
+                e.stopPropagation(); // Prevent event from bubbling up
+                searchBox.classList.remove('open');
+            });
+
+            // Close search box when clicking outside
+            document.addEventListener('click', (e) => {
+                if (!searchBox.contains(e.target) && e.target !== searchToggle) {
+                    searchBox.classList.remove('open');
+                }
+            });
+
+            // Prevent the search box from closing when clicking inside it
+            searchBox.addEventListener('click', (e) => {
+                e.stopPropagation();
+            });
+        }
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.dropdown')) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.add('hidden');
+                });
+            }
+        });
+
+        // Scroll to Top Button
+        const scrollToTopButton = document.getElementById('scrollToTop');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopButton.classList.add('visible');
+            } else {
+                scrollToTopButton.classList.remove('visible');
+            }
+        });
+
+        scrollToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Hide loader when everything is loaded
+        window.addEventListener('load', function () {
+            // Add a small delay for the loading animation to complete
+            setTimeout(function () {
+                const loader = document.querySelector('.page-loader');
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+            }, 500); // 500ms delay to allow the loading animation to complete
+        });
+
+
+        document.getElementById("searchForm").addEventListener("submit", function (e) {
+            e.preventDefault(); // stop the default form submission
+            const query = document.getElementById("searchInput").value.trim();
+            if (query) {
+                // encode query and redirect to search.html with query param
+                window.location.href = "search.html?query=" + encodeURIComponent(query);
+            }
+        });
+
+        // Fallback in case the load event doesn't fire
+        document.addEventListener('DOMContentLoaded', function () {
+
+
+
+
+            // Hide loader when DOM is fully loaded
+            document.addEventListener('DOMContentLoaded', function () {
+                const loader = document.querySelector('.page-loader');
+                loader.style.opacity = '0';
+                loader.style.visibility = 'hidden';
+
+                // Remove the loader from DOM after transition completes
+                loader.addEventListener('transitionend', function () {
+                    loader.remove();
+                });
+
+
+
+            });
+
+            // Fallback in case DOMContentLoaded takes too long
+            setTimeout(function () {
+                const loader = document.querySelector('.page-loader');
+                if (loader && loader.style.opacity !== '0') {
+                    loader.style.opacity = '0';
+                    loader.style.visibility = 'hidden';
+                    loader.addEventListener('transitionend', function () {
+                        loader.remove();
+                    });
+                }
+            }, 5000); // Maximum 5 seconds fallback
+
+
+            // Scroll event listener for header effect
+            window.addEventListener('scroll', function () {
+                const header = document.querySelector('header');
+                if (window.scrollY > 100) {
+                    header.classList.add('scrolled');
+                } else {
+                    header.classList.remove('scrolled');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
