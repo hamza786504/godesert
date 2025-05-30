@@ -19,7 +19,7 @@
         body {
             overflow-x: hidden;
         }
-        
+
         * {
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
@@ -237,10 +237,10 @@
             <nav class="hidden md:flex items-center space-x-8">
                 <div class="flex items-center space-x-6">
                     <a href="#" class="text-white hover:text-gray-200 transition">Home</a>
-                    <a href="#" class="text-white hover:text-gray-200 transition">About</a>
+                    <a href="#pricing" class="text-white hover:text-gray-200 transition">Pricing</a>
 
                     <!-- Services Dropdown -->
-                    <div class="dropdown relative">
+                    <!-- <div class="dropdown relative">
                         <button class="text-white hover:text-gray-200 transition flex items-center"
                             aria-expanded="false" aria-haspopup="true">
                             Services <i class="fas fa-chevron-down ml-1 text-xs"></i>
@@ -258,11 +258,9 @@
                             <a href="#"
                                 class="block px-4 py-2 text-gray-800 hover:bg-amber-50 hover:text-amber-600">Sandboarding</a>
                         </div>
-                    </div>
-
-                    <a href="#" class="text-white hover:text-gray-200 transition">Gallery</a>
-                    <a href="#" class="text-white hover:text-gray-200 transition">Blog</a>
-                    <a href="#" class="text-white hover:text-gray-200 transition">Contact</a>
+                    </div> -->
+                    <a href="#faq" class="text-white hover:text-gray-200 transition">FAQ's</a>
+                    <a href="#contactSection" class="text-white hover:text-gray-200 transition">Contact</a>
                 </div>
 
                 <!-- Header Icons -->
@@ -285,7 +283,7 @@
                                     <i class="fas fa-search"></i>
                                 </button>
                             </form>
-                            
+
                             <button id="search-close"
                                 class="absolute -top-2 -right-2 bg-gray-200 rounded-full w-6 h-6 flex items-center justify-center hover:bg-gray-300"
                                 aria-label="Close search">
@@ -334,7 +332,7 @@
                     class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">About</a>
 
                 <!-- Services Accordion -->
-                <div class="mb-2">
+                <!-- <div class="mb-2">
                     <button id="mobile-services-toggle"
                         class="w-full flex justify-between items-center py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded"
                         aria-expanded="false" aria-controls="mobile-services-menu">
@@ -354,13 +352,10 @@
                         <a href="#"
                             class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Sandboarding</a>
                     </div>
-                </div>
-
-                <a href="#"
-                    class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Gallery</a>
-                <a href="#"
-                    class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Blog</a>
-                <a href="#"
+                </div> -->
+                <a href="#faq"
+                    class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Faq's</a>
+                <a href="#contact"
                     class="block py-2 px-3 text-gray-800 hover:bg-amber-50 hover:text-amber-600 rounded">Contact</a>
             </nav>
         </div>
@@ -391,11 +386,11 @@
                 </p>
 
                 <div class="flex flex-col sm:flex-row justify-center gap-4">
-                    <a href="#book-now"
+                    <a href="#contact"
                         class="px-4 md:px-8 py-2 md:py-4 bg-amber-500 hover:bg-amber-600 text-black font-bold rounded-lg transition duration-300 transform hover:scale-105 shadow-lg">
                         Book Your Adventure
                     </a>
-                    <a href="#tours"
+                    <a href="#pricing"
                         class="px-4 md:px-8 py-2 md:py-4 border-2 border-white hover:bg-white hover:bg-opacity-20 font-bold rounded-lg transition duration-300 transform hover:scale-105">
                         Explore Tours
                     </a>
@@ -578,9 +573,8 @@
             <div class="flex flex-col lg:flex-row-reverse items-center gap-12 wow animate__animated animate__fadeInUp">
                 <!-- Image Column -->
                 <div class="lg:w-1/2 wow animate__animated animate__fadeInRight">
-                    <div class="image-text-section rounded-xl overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1503917988258-f87a78e3c995?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1887&q=80"
-                            alt="Desert Adventure Activities" class="w-full h-auto rounded-xl shadow-xl">
+                    <div class="overflow-hidden">
+                        <img src="./images/about image.avif" alt="Desert Adventure Activities" class="w-full h-auto">
                     </div>
                 </div>
 
@@ -863,15 +857,16 @@
                 <p class="text-lg text-amber-100 mb-8">Subscribe to our newsletter for the latest desert adventures,
                     special offers, and travel tips.</p>
 
-                <div class="flex flex-col md:flex-row gap-4 justify-center">
-                    <input type="email" placeholder="Your email address"
+                <form class="flex flex-col md:flex-row gap-4 justify-center" id="newsletter-form">
+                    <input type="email" name="email" placeholder="Your email address"
                         class="flex-grow px-6 py-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-amber-400"
                         required>
-                    <button
+                    <button type="submit"
                         class="bg-amber-500 hover:bg-amber-600 text-white font-semibold px-8 py-3 rounded-lg transition duration-300">
                         Subscribe
                     </button>
-                </div>
+                </form>
+
 
                 <div class="mt-4 flex justify-center gap-4">
                     <!-- Social Media Links -->
@@ -920,7 +915,7 @@
             </div>
 
             <!-- FAQ Section -->
-            <div class="max-w-4xl mx-auto">
+            <div id="faq" class="max-w-4xl mx-auto">
                 <h3 class="text-2xl md:text-3xl font-bold text-[#0d3559] mb-8 text-center">
                     Frequently Asked Questions
                 </h3>
@@ -1059,7 +1054,7 @@
 
 
 
-    <section id="contact" class="contact py-12 bg-white">
+    <section id="contactSection" class="contact py-12 bg-white">
         <div class="max-w-6xl mx-auto px-4">
             <div class="text-center mb-8">
                 <h2 class="text-3xl font-bold text-gray-900">Contact</h2>
@@ -1083,7 +1078,7 @@
                             <div class="pl-5">
                                 <h4 class="text-lg font-semibold text-gray-900">WhatsApp:</h4>
                                 <p class="text-sm text-gray-600">
-                                    <a href="https://wa.me/971563533480?text=">+971 563533480</a>
+                                    <a href="https://wa.me/+971506887387">+971506887387</a>
                                 </p>
                             </div>
                         </div>
@@ -1101,7 +1096,7 @@
                             <div class="pl-5">
                                 <h4 class="text-lg font-semibold text-gray-900">Email:</h4>
                                 <p class="text-sm text-gray-600">
-                                    <a href="mailto:deserttraveltoursae@gmail.com">info@deserttravelstours.com</a>
+                                    <a href="mailto:info@godessertabudhabi.com">info@godessertabudhabi.com</a>
                                 </p>
                             </div>
                         </div>
@@ -1130,37 +1125,80 @@
 
                 <!-- Contact Form -->
                 <div class="w-full lg:w-2/3">
-                    <form action="forms/contact.php" method="post" role="form" class="space-y-4 bg-white">
+                    <form id="bookingForm" class="space-y-4 bg-white">
                         <div class="flex flex-col md:flex-row gap-4">
                             <div class="w-full">
-                                <input type="text" name="name" id="name" placeholder="Your Name" required
+                                <input type="date" name="date" id="date" placeholder="Date" required
                                     class="w-full h-11 px-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+                                <div id="date-error" class="text-red-500 text-xs mt-1 hidden">Please select a valid date
+                                </div>
                             </div>
                             <div class="w-full">
-                                <input type="email" name="email" id="email" placeholder="Your Email" required
+                                <input type="text" name="name" id="name" placeholder="Name" required
                                     class="w-full h-11 px-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+                                <div id="name-error" class="text-red-500 text-xs mt-1 hidden">Please enter your name
+                                </div>
                             </div>
                         </div>
 
-                        <input type="text" name="subject" id="subject" placeholder="Subject" required
-                            class="w-full h-11 px-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="w-full">
+                                <input type="tel" name="contact" id="contact"
+                                    placeholder="Contact No With Country Code (e.g. +971501234567)" required
+                                    class="w-full h-11 px-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+                                <div id="contact-error" class="text-red-500 text-xs mt-1 hidden">Please enter a valid
+                                    contact number with country code</div>
+                            </div>
+                            <div class="w-full">
+                                <input type="email" name="email" id="email" placeholder="Email" required
+                                    class="w-full h-11 px-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+                                <div id="email-error" class="text-red-500 text-xs mt-1 hidden">Please enter a valid
+                                    email address</div>
+                            </div>
+                        </div>
 
-                        <textarea name="message" rows="5" placeholder="Message" required
-                            class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"></textarea>
+                        <div class="w-full">
+                            <textarea name="pickup_address" id="pickup_address" rows="3" placeholder="Pickup Address"
+                                required
+                                class="w-full px-3 py-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400"></textarea>
+                            <div id="pickup_address-error" class="text-red-500 text-xs mt-1 hidden">Please enter pickup
+                                address</div>
+                        </div>
+
+                        <div class="flex flex-col md:flex-row gap-4">
+                            <div class="w-full">
+                                <input type="number" name="persons" id="persons" placeholder="No Of Persons" min="1"
+                                    required
+                                    class="w-full h-11 px-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400" />
+                                <div id="persons-error" class="text-red-500 text-xs mt-1 hidden">Please enter number of
+                                    persons (minimum 1)</div>
+                            </div>
+                            <div class="w-full">
+                                <select name="package" id="package" required
+                                    class="w-full h-11 px-3 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                                    <option value="" disabled selected>Select Package</option>
+                                    <option value="Basic">Basic</option>
+                                    <option value="Standard">Standard</option>
+                                    <option value="Premium">Premium</option>
+                                </select>
+                                <div id="package-error" class="text-red-500 text-xs mt-1 hidden">Please select a package
+                                </div>
+                            </div>
+                        </div>
 
                         <!-- Feedback Messages -->
                         <div class="space-y-3 text-sm font-semibold">
-                            <div class="loading hidden bg-white text-center py-3 text-gray-700">Loading...</div>
-                            <div class="error-message hidden bg-red-600 text-white text-left py-3 px-4">Error occurred.
-                            </div>
-                            <div class="sent-message hidden bg-green-500 text-white text-center py-3">Your message has
-                                been sent. Thank you!</div>
+                            <div id="loading" class="hidden bg-white text-center py-3 text-gray-700">Sending your
+                                booking...</div>
+                            <div id="error-message" class="hidden bg-red-600 text-white text-left py-3 px-4"></div>
+                            <div id="success-message" class="hidden bg-green-500 text-white text-center py-3">Your
+                                booking has been received. Thank you!</div>
                         </div>
 
                         <div class="text-center">
                             <button type="submit"
                                 class="bg-yellow-400 hover:bg-yellow-300 text-gray-900 px-6 py-2 rounded-md transition duration-300">
-                                Send Message
+                                Submit Booking
                             </button>
                         </div>
                     </form>
@@ -1226,18 +1264,18 @@
             document.body.style.overflow = '';
         });
 
-        // Mobile Services Toggle
-        const mobileServicesToggle = document.getElementById('mobile-services-toggle');
-        const mobileServicesMenu = document.getElementById('mobile-services-menu');
+        // // Mobile Services Toggle
+        // const mobileServicesToggle = document.getElementById('mobile-services-toggle');
+        // const mobileServicesMenu = document.getElementById('mobile-services-menu');
 
-        mobileServicesToggle.addEventListener('click', () => {
-            const isExpanded = mobileServicesToggle.getAttribute('aria-expanded') === 'true';
-            mobileServicesMenu.classList.toggle('hidden');
-            mobileServicesToggle.setAttribute('aria-expanded', !isExpanded);
+        // mobileServicesToggle.addEventListener('click', () => {
+        //     const isExpanded = mobileServicesToggle.getAttribute('aria-expanded') === 'true';
+        //     mobileServicesMenu.classList.toggle('hidden');
+        //     mobileServicesToggle.setAttribute('aria-expanded', !isExpanded);
 
-            const icon = mobileServicesToggle.querySelector('i');
-            icon.classList.toggle('rotate-180');
-        });
+        //     const icon = mobileServicesToggle.querySelector('i');
+        //     icon.classList.toggle('rotate-180');
+        // });
 
         // Search Toggle - Fixed version
         const searchToggle = document.getElementById('search-toggle');
@@ -1306,19 +1344,19 @@
 
 
         document.getElementById("searchForm").addEventListener("submit", function (e) {
-        e.preventDefault(); // stop the default form submission
-        const query = document.getElementById("searchInput").value.trim();
-        if (query) {
-            // encode query and redirect to search.html with query param
-            window.location.href = "search.html?query=" + encodeURIComponent(query);
-        }
-    });
+            e.preventDefault(); // stop the default form submission
+            const query = document.getElementById("searchInput").value.trim();
+            if (query) {
+                // encode query and redirect to search.html with query param
+                window.location.href = "search.html?query=" + encodeURIComponent(query);
+            }
+        });
 
         // Fallback in case the load event doesn't fire
         document.addEventListener('DOMContentLoaded', function () {
 
 
-            
+
 
             // Hide loader when DOM is fully loaded
             document.addEventListener('DOMContentLoaded', function () {
@@ -1332,7 +1370,7 @@
                 });
 
 
-      
+
             });
 
             // Fallback in case DOMContentLoaded takes too long
@@ -1387,8 +1425,201 @@
             });
 
 
+            document.getElementById('bookingForm').addEventListener('submit', function (e) {
+                e.preventDefault();
+                clearErrors();
 
-            
+                // Validate form fields
+                let isValid = true;
+
+                // Date validation
+                const date = document.getElementById('date');
+                if (!date.value) {
+                    showError(date, 'date-error', 'Please select a date');
+                    isValid = false;
+                }
+
+                // Name validation
+                const name = document.getElementById('name');
+                if (!name.value || !name.value.trim()) {
+                    showError(name, 'name-error', 'Please enter your name');
+                    isValid = false;
+                }
+
+                // Contact validation - fixed trimming issue
+                const contact = document.getElementById('contact');
+                const contactValue = contact.value || '';
+                const trimmedContact = contactValue.trim();
+                // More flexible international phone validation
+                if (!trimmedContact) {
+                    showError(contact, 'contact-error', 'Please enter your phone number');
+                    isValid = false;
+                } else if (!/^\+(?:[0-9]●?){6,14}[0-9]$/.test(trimmedContact)) {
+                    showError(contact, 'contact-error', 'Please enter a valid international number (e.g. +971501234567, +442072222222)');
+                    isValid = false;
+                }
+
+                // Email validation
+                const email = document.getElementById('email');
+                const emailValue = email.value || '';
+                if (!emailValue.trim() || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue.trim())) {
+                    showError(email, 'email-error', 'Please enter a valid email address');
+                    isValid = false;
+                }
+
+                // Pickup address validation
+                const pickupAddress = document.getElementById('pickup_address');
+                const pickupValue = pickupAddress.value || '';
+                if (!pickupValue.trim()) {
+                    showError(pickupAddress, 'pickup_address-error', 'Please enter pickup address');
+                    isValid = false;
+                }
+
+                // Persons validation
+                const persons = document.getElementById('persons');
+                if (!persons.value || parseInt(persons.value) < 1) {
+                    showError(persons, 'persons-error', 'Please enter number of persons (minimum 1)');
+                    isValid = false;
+                }
+
+                // Package validation
+                const package = document.getElementById('package');
+                if (!package.value) {
+                    showError(package, 'package-error', 'Please select a package');
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    return;
+                }
+
+                // If valid, submit the form
+                submitForm();
+            });
+
+            function showError(field, errorElementId, message) {
+                if (!field) return;
+
+                field.classList.add('border-red-500');
+                const errorElement = document.getElementById(errorElementId);
+                if (errorElement) {
+                    errorElement.textContent = message;
+                    errorElement.classList.remove('hidden');
+                }
+            }
+
+            function clearErrors() {
+                // Clear all error styles and messages
+                document.querySelectorAll('.border-red-500').forEach(el => {
+                    el.classList.remove('border-red-500');
+                });
+
+                document.querySelectorAll('[id$="-error"]').forEach(el => {
+                    el.classList.add('hidden');
+                });
+
+                // Hide any previous messages
+                document.getElementById('error-message').classList.add('hidden');
+                document.getElementById('success-message').classList.add('hidden');
+            }
+
+            function showError(field, errorElementId, message) {
+                field.classList.add('border-red-500');
+                const errorElement = document.getElementById(errorElementId);
+                errorElement.textContent = message;
+                errorElement.classList.remove('hidden');
+            }
+
+            function clearErrors() {
+                // Clear all error styles and messages
+                const errorFields = document.querySelectorAll('[id$="-error"]');
+                errorFields.forEach(errorField => {
+                    errorField.classList.add('hidden');
+                });
+
+                const formFields = document.querySelectorAll('input, textarea, select');
+                formFields.forEach(field => {
+                    field.classList.remove('border-red-500');
+                });
+
+                // Hide any previous messages
+                document.getElementById('error-message').classList.add('hidden');
+                document.getElementById('success-message').classList.add('hidden');
+            }
+
+            function submitForm() {
+                const form = document.getElementById('bookingForm');
+                const formData = new FormData(form);
+
+                // Show loading indicator
+                document.getElementById('loading').classList.remove('hidden');
+
+                // Simulate form submission (replace with actual AJAX call)
+                fetch('backend/contact.php', {
+                    method: 'POST',
+                    body: formData
+                })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.text();
+                    })
+                    .then(data => {
+                        document.getElementById('loading').classList.add('hidden');
+                        document.getElementById('success-message').classList.remove('hidden');
+                        form.reset();
+                    })
+                    .catch(error => {
+                        document.getElementById('loading').classList.add('hidden');
+                        const errorMessage = document.getElementById('error-message');
+                        errorMessage.textContent = 'Error submitting form: ' + error.message;
+                        errorMessage.classList.remove('hidden');
+                    });
+            }
+
+
+
+document.getElementById("newsletter-form").addEventListener("submit", function (e) {
+    e.preventDefault(); // prevent native form submission
+
+    const emailInput = this.email;
+    const email = emailInput.value.trim();
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!emailRegex.test(email)) {
+        alert("Please enter a valid email address.");
+        emailInput.focus();
+        return;
+    }
+
+    // Prepare the payload
+    const formData = new FormData();
+    formData.append("email", email);
+
+    // Send using fetch
+    fetch("./backend/newsletter.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.text())
+    .then(response => {
+        if (response.trim() === "success") {
+            alert("Thanks for subscribing!");
+            e.target.reset();
+        } else if (response.trim() === "invalid") {
+            alert("Invalid email format.");
+        } else {
+            alert("Something went wrong. Please try again later.");
+        }
+    })
+    .catch(err => {
+        console.error("Error:", err);
+        alert("Failed to connect. Please try again.");
+    });
+});
+
+
         });
     </script>
 </body>
